@@ -70,8 +70,8 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h4 className="font-semibold text-gray-900 mb-4">Contact Us</h4>
-          <p className="text-gray-600 mb-2">info@baumannenergy.com</p>
-          <p className="text-gray-600 mb-2">+234 800 123 4567</p>
+          <p className="text-gray-600 mb-2">baumannenergysolar@gmail.com</p>
+          <p className="text-gray-600 mb-2">+2348139285321</p>
           <p className="text-gray-600">Lagos, Nigeria</p>
         </div>
       </div>
