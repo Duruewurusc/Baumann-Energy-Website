@@ -36,4 +36,5 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            # pm2 restart myreactapp || pm2 start npm --name "myreactapp" -- start
+            # Reload Nginx
+            sudo systemctl reload nginx
