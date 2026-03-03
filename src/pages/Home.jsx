@@ -6,7 +6,7 @@ import Solutions from "../components/Solutions";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Testimonials from "../components/Testimonials";
 import Footer from "../components/Footer";
-import CTASection from "../components/CTA";
+import CTASection from "../components/Cta";
 
 function Home() {
   return (
