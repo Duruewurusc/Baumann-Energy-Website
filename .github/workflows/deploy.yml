@@ -34,7 +34,7 @@ jobs:
           script: |
             cd /var/www/baumann/Baumann-Energy-Website
             git pull origin main
-            npm install
+            # npm install
             npm run build
             # Reload Nginx
-            systemctl reload nginx
+            # systemctl reload nginx
