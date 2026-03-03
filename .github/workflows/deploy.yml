@@ -37,4 +37,4 @@ jobs:
             npm install
             npm run build
             # Reload Nginx
-            sudo systemctl reload nginx
+            systemctl reload nginx
