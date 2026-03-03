@@ -52,7 +52,7 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 7000);
+    }, 8000);
 
     return () => clearInterval(timer);
   }, [nextSlide]);
