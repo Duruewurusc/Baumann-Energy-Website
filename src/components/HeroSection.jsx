@@ -3,9 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineSun, HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 
 // Sample Nigerian Solar Images (Replace with your real images)
-import hero1 from "../assets/hero-1.jpg";
-import hero2 from "../assets/hero-2.jpg";
-import hero3 from "../assets/hero-3.jpg";
+import hero1 from "../assets/hero.jpg";
+import hero2 from "../assets/hero-1.jpg";
+import hero3 from "../assets/hero-2.jpg";
+import blogo from "../assets/b.png"
 
 const slides = [
   {
@@ -81,7 +82,7 @@ const HeroSection = () => {
             className="w-full h-full object-cover"
             onLoad={handleImageLoad}
           />
-          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
         </motion.div>
       </AnimatePresence>
 
@@ -108,7 +109,7 @@ const HeroSection = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="flex items-center justify-center gap-2 mb-4"
               >
-                <HiOutlineSun className="text-[#16a34a] text-4xl" />
+                <img src={blogo} className="w-8"/>
                 <h2 className="text-xl font-semibold tracking-wide uppercase">
                   Bauman Energy
                 </h2>

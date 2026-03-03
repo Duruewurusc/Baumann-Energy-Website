@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import WhatsAppButton from "./components/WhatsAppButton";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,8 +16,12 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Home />} />
+
+        {/* Catch-all route MUST be last */}
+        <Route path="*" element={<NotFound />} />
      
       </Routes>
+       <WhatsAppButton />
     </BrowserRouter>
     </>
   )
