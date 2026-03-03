@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useMemo, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import training from "../assets/training.jpg";
 import repair from "../assets/repair.jpg";
 import install from "../assets/install.jpg";
@@ -80,8 +81,38 @@ const headerVariants = {
   },
 };
 
+// Mobile content animation variants
+const mobileContentVariants = {
+  hidden: { 
+    y: 20,
+    opacity: 0,
+    transition: { duration: 0.3 }
+  },
+  visible: { 
+    y: 0,
+    opacity: 1,
+    transition: { 
+      duration: 0.5,
+      ease: "easeOut",
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const mobileFeatureVariants = {
+  hidden: { 
+    y: 10,
+    opacity: 0 
+  },
+  visible: { 
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.3 }
+  }
+};
+
 export default function Solutions() {
-  const [hoveredId, setHoveredId] = useState(null);
   const memoizedSolutions = useMemo(() => solutions, []);
 
   return (
@@ -125,25 +156,6 @@ export default function Solutions() {
             Delivering high-performance solar products and expert services for
             homes and businesses seeking uninterrupted power.
           </p>
-
-          {/* Stats Bar */}
-          {/* <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex justify-center items-center gap-12 mt-12"
-          >
-            {[
-              { value: '500+', label: 'Projects Completed' },
-              { value: '98%', label: 'Client Satisfaction' },
-              { value: '24/7', label: 'Support Available' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl font-bold text-emerald-600">{stat.value}</div>
-                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div> */}
         </motion.div>
 
         {/* Solution Cards */}
@@ -154,85 +166,8 @@ export default function Solutions() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-2"
         >
-          {memoizedSolutions.map((item) => (
-            <motion.article
-              key={item.id}
-              variants={itemVariants}
-              onHoverStart={() => setHoveredId(item.id)}
-              onHoverEnd={() => setHoveredId(null)}
-              className="group relative h-128 md:h-160 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 focus-within:ring-4 focus-within:ring-emerald-500 focus-within:ring-offset-4"
-            >
-              {/* Background Image with Overlay */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-all duration-1000 group-hover:scale-110 will-change-transform"
-                style={{ 
-                  backgroundImage: `url(${item.image})`,
-                  backgroundColor: '#1a1a1a',
-                }}
-                role="img"
-                aria-label={item.alt}
-              />
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-700" />
-
-              {/* Brand Accent Corner */}
-              
-
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-end p-8 text-white">
-                {/* Icon/Number */}
-                <div className="absolute top-8 left-8 text-7xl font-black text-white/10 group-hover:text-emerald-500/20 transition-colors duration-500">
-                  {(solutions.findIndex(s => s.id === item.id) + 1).toString().padStart(2, '0')}
-                </div>
-
-                <h3 className="text-2xl font-bold mb-3 leading-snug relative">
-                  <span className="relative inline-block">
-                    {item.title}
-                    <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-700" />
-                  </span>
-                </h3>
-
-                <p className="text-gray-200 text-sm leading-relaxed mb-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100">
-                  {item.description}
-                </p>
-
-                {/* Features */}
-                {item.features && (
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredId === item.id ? 1 : 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="space-y-2 mb-6"
-                  >
-                    {item.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center text-sm text-gray-300">
-                        <svg className="w-4 h-4 mr-2 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        {feature}
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-
-                {/* CTA Button */}
-                <motion.button
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: hoveredId === item.id ? 1 : 0, x: hoveredId === item.id ? 0 : -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-                >
-                  Learn More
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </motion.button>
-              </div>
-
-              {/* Hover Border Effect */}
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-emerald-400/50 rounded-3xl transition-all duration-700 pointer-events-none" />
-            </motion.article>
+          {memoizedSolutions.map((item, index) => (
+            <SolutionCard key={item.id} item={item} index={index} />
           ))}
         </motion.div>
 
@@ -258,5 +193,144 @@ export default function Solutions() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+// Separate component for each card to handle individual visibility
+function SolutionCard({ item, index }) {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+    rootMargin: "50px",
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.article
+      ref={ref}
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      className="group relative h-128 md:h-160 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 focus-within:ring-4 focus-within:ring-emerald-500 focus-within:ring-offset-4"
+    >
+      {/* Background Image with Overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 md:group-hover:scale-110 will-change-transform"
+        style={{ 
+          backgroundImage: `url(${item.image})`,
+          backgroundColor: '#1a1a1a',
+        }}
+        role="img"
+        aria-label={item.alt}
+      />
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-80 md:group-hover:opacity-90 transition-opacity duration-700" />
+
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-end p-8 text-white">
+        {/* Icon/Number */}
+        {/* <div className="absolute top-8 left-8 text-7xl font-black text-white/10 md:group-hover:text-emerald-500/20 transition-colors duration-500">
+          {(index + 1).toString().padStart(2, '0')}
+        </div> */}
+
+        <h3 className="text-2xl font-bold mb-3 leading-snug relative">
+          <span className="relative inline-block">
+            {item.title}
+            <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-emerald-400 md:group-hover:w-full transition-all duration-700" />
+          </span>
+        </h3>
+
+        {/* Mobile View - Auto slide up content */}
+        <div className="md:hidden">
+          <motion.div
+            variants={mobileContentVariants}
+            initial="hidden"
+            animate={controls}
+            className="space-y-4"
+          >
+            <p className="text-gray-200 text-sm leading-relaxed">
+              {item.description}
+            </p>
+
+            {item.features && (
+              <motion.div 
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.1,
+                      delayChildren: 0.2
+                    }
+                  }
+                }}
+                className="space-y-2"
+              >
+                {item.features.map((feature, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    variants={mobileFeatureVariants}
+                    className="flex items-center text-sm text-gray-300"
+                  >
+                    <svg className="w-4 h-4 mr-2 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {feature}
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            <motion.button
+              variants={mobileFeatureVariants}
+              className="inline-flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Learn More
+              <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </motion.button>
+          </motion.div>
+        </div>
+
+        {/* Desktop View - Original hover behavior */}
+        <div className="hidden md:block">
+          {/* Description - hidden by default, shows on hover */}
+          <p className="text-gray-200 text-sm leading-relaxed mb-6 transform translate-y-4 opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-700 delay-100">
+            {item.description}
+          </p>
+
+          {/* Desktop Features - hidden by default, shows on hover */}
+          {item.features && (
+            <div className="space-y-2 mb-6 opacity-0 md:group-hover:opacity-100 transition-all duration-700 delay-200">
+              {item.features.map((feature, idx) => (
+                <div key={idx} className="flex items-center text-sm text-gray-300">
+                  <svg className="w-4 h-4 mr-2 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  {feature}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Desktop CTA - hidden by default, shows on hover */}
+          <button className="inline-flex items-center text-sm font-medium text-emerald-400 opacity-0 md:group-hover:opacity-100 transition-all duration-700 delay-300 hover:text-emerald-300">
+            Learn More
+            <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Hover Border Effect */}
+      <div className="absolute inset-0 border-2 border-transparent md:group-hover:border-emerald-400/50 rounded-3xl transition-all duration-700 pointer-events-none" />
+    </motion.article>
   );
 }
