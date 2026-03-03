@@ -200,7 +200,7 @@ export default function Solutions() {
 function SolutionCard({ item, index }) {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.5,
+    threshold: 0.7,
     triggerOnce: true,
     rootMargin: "50px",
   });
