@@ -164,10 +164,10 @@ const HeroSection = () => {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-6 z-20">
+      <div className="hidden md:flex absolute bottom-10 left-0 right-0 justify-center gap-6 z-20">
         <button
           onClick={prevSlide}
-          className="bg-white/20 hover:bg-[#16a34a] p-3 rounded-full backdrop-blur-md transition"
+          className="bg-white/10 hover:bg-[#16a34a] p-3 rounded-full backdrop-blur-md transition"
           disabled={!imageLoaded}
         >
           <HiOutlineChevronLeft className="text-white text-2xl" />
@@ -175,7 +175,7 @@ const HeroSection = () => {
 
         <button
           onClick={nextSlide}
-          className="bg-white/20 hover:bg-[#16a34a] p-3 rounded-full backdrop-blur-md transition"
+          className="bg-white/10 hover:bg-[#16a34a] p-3 rounded-full backdrop-blur-md transition"
           disabled={!imageLoaded}
         >
           <HiOutlineChevronRight className="text-white text-2xl" />
