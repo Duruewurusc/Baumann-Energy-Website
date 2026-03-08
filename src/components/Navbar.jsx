@@ -14,6 +14,7 @@ import {
   HiOutlineFolderOpen,
   HiOutlineDeviceMobile 
 } from 'react-icons/hi';
+import { Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,21 +26,24 @@ const Navbar = () => {
 
   // Navigation items
   const navItems = [
-    { name: 'Home', href: '#', icon: HiOutlineHome },
+    { name: 'Home', href: '/', icon: HiOutlineHome },
     { 
       name: 'Products', 
-      href: '#products',
+      href: 'products',
       icon: HiOutlineSun,
       dropdown: [
-        { name: 'Solar Panels', href: '#solar-panels' },
-        { name: 'Inverters', href: '#inverters' },
-        { name: 'Batteries', href: '#batteries' },
-        { name: 'Mounting Systems', href: '#mounting' },
+        { name: 'Solar Panels', href: 'products/solar-panels' },
+        { name: 'Inverters', href: 'products/inverters' },
+        { name: 'Batteries', href: 'products/batteries' },
+        { name: 'Charge Controllers', href: 'products/charge-controllers' },
+        { name: 'Solar Generators', href: 'products/solar-generators' },
+        { name: 'Air Conditioners', href: 'products/air-conditioners' },
       ]
     },
+    { name: 'Services', href: 'services', icon: HiOutlineDeviceMobile },
     { 
       name: 'Project Case Studies', 
-      href: '#case-studies',
+      href: 'projects',
       icon: HiOutlineFolderOpen,
       dropdown: [
         { name: 'Residential', href: '#residential' },
@@ -48,9 +52,10 @@ const Navbar = () => {
         { name: 'Utility Scale', href: '#utility' },
       ]
     },
-    { name: 'FAQ', href: '#faq', icon: HiOutlineQuestionMarkCircle },
-    { name: 'Blog', href: '#blog', icon: HiOutlineNewspaper },
-    { name: 'Contact Us', href: '#contact', icon: HiOutlinePhone },
+     
+    { name: 'Contact Us', href: 'contact', icon: HiOutlinePhone },
+    // { name: 'Locate a Distributor', href: 'distributors', icon: HiOutlineDocumentText },  
+    { name: 'Blog', href: 'blog', icon: HiOutlineNewspaper },
   ];
 
   // Handle scroll effect
@@ -223,7 +228,7 @@ const Navbar = () => {
               </motion.a>
 
               {/* CTA Button */}
-              <motion.button
+              <motion.button onClick={() => window.location.href = '/distributors'}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -233,7 +238,7 @@ const Navbar = () => {
                     : 'bg-white text-[#16a34a] hover:bg-gray-100'
                 }`}
               >
-                Get Quote
+                Locate a Distributor
               </motion.button>
             </div>
 
@@ -332,7 +337,7 @@ const Navbar = () => {
                   className="mt-4 px-4"
                 >
                   <button className="w-full bg-[#16a34a] text-white py-3 rounded-lg font-medium hover:bg-[#138f3f] transition-colors duration-200">
-                    Get Quote
+                    Locate a Distributor
                   </button>
                 </motion.div>
               </div>

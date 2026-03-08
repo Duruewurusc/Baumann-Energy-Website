@@ -123,7 +123,7 @@ export default function Solutions() {
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000" />
+        
       </div>
 
       <div className="relative max-w-7xl md:max-w-full mx-auto z-10">
@@ -330,7 +330,7 @@ function SolutionCard({ item, index }) {
       </div>
 
       {/* Hover Border Effect */}
-      <div className="absolute inset-0 border-2 border-transparent md:group-hover:border-emerald-400/50 rounded-3xl transition-all duration-700 pointer-events-none" />
+      <div className="absolute inset-0 border-2 border-transparent md:group-hover:border-emerald-400/50  transition-all duration-700 pointer-events-none" />
     </motion.article>
   );
 }
