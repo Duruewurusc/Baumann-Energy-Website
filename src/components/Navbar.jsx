@@ -14,12 +14,12 @@ import {
   HiOutlineFolderOpen,
   HiOutlineDeviceMobile 
 } from 'react-icons/hi';
-import { Navigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
 
   // Company phone number
   const phoneNumber = "+234 817 069 9405";
@@ -29,7 +29,7 @@ const Navbar = () => {
     { name: 'Home', href: '/', icon: HiOutlineHome },
     { 
       name: 'Products', 
-      href: 'products',
+      href: '/products',
       icon: HiOutlineSun,
       dropdown: [
         { name: 'Solar Panels', href: "/products?category=Solar Panel" },
@@ -40,10 +40,10 @@ const Navbar = () => {
         { name: 'Air Conditioners', href: "/products?category=Inverter AC" },
       ]
     },
-    { name: 'Services', href: 'services', icon: HiOutlineDeviceMobile },
+    { name: 'Services', href: '/services', icon: HiOutlineDeviceMobile },
     { 
       name: 'Project Case Studies', 
-      href: 'projects',
+      href: '/projects',
       icon: HiOutlineFolderOpen,
       dropdown: [
         { name: 'Residential', href: '#residential' },
@@ -52,10 +52,8 @@ const Navbar = () => {
         { name: 'Utility Scale', href: '#utility' },
       ]
     },
-     
-    { name: 'Contact Us', href: 'contact', icon: HiOutlinePhone },
-    // { name: 'Locate a Distributor', href: 'distributors', icon: HiOutlineDocumentText },  
-    { name: 'Blog', href: 'blog', icon: HiOutlineNewspaper },
+    { name: 'Contact Us', href: '/contact', icon: HiOutlinePhone },
+    { name: 'Blog', href: '/blog', icon: HiOutlineNewspaper },
   ];
 
   // Handle scroll effect
@@ -67,7 +65,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle dropdown hover
+  // Handle dropdown hover for desktop
   const handleDropdownEnter = (index) => {
     setActiveDropdown(index);
   };
@@ -76,16 +74,34 @@ const Navbar = () => {
     setActiveDropdown(null);
   };
 
+  // Toggle mobile dropdown
+  const toggleMobileDropdown = (index) => {
+    setOpenMobileDropdown(openMobileDropdown === index ? null : index);
+  };
+
   // Close mobile menu on resize (if screen becomes larger)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1024) {
         setIsMobileMenuOpen(false);
+        setOpenMobileDropdown(null);
       }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   // Animation variants
   const mobileMenuVariants = {
@@ -93,7 +109,7 @@ const Navbar = () => {
       opacity: 0,
       y: -20,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         ease: "easeInOut"
       }
     },
@@ -101,7 +117,7 @@ const Navbar = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         ease: "easeInOut"
       }
     }
@@ -111,6 +127,7 @@ const Navbar = () => {
     hidden: { 
       opacity: 0, 
       y: -10,
+      height: 0,
       transition: {
         duration: 0.2
       }
@@ -118,6 +135,7 @@ const Navbar = () => {
     visible: { 
       opacity: 1, 
       y: 0,
+      height: "auto",
       transition: {
         duration: 0.2
       }
@@ -142,7 +160,7 @@ const Navbar = () => {
               transition={{ duration: 0.5 }}
               className="shrink-0"
             >
-              <a href="#" className="block">
+              <a href="/" className="block">
                 <img
                   src={logo}
                   alt="Baumann Solar"
@@ -228,7 +246,8 @@ const Navbar = () => {
               </motion.a>
 
               {/* CTA Button */}
-              <motion.button onClick={() => window.location.href = '/distributors'}
+              <motion.a
+                href="/distributors"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -239,7 +258,7 @@ const Navbar = () => {
                 }`}
               >
                 Locate a Distributor
-              </motion.button>
+              </motion.a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -252,6 +271,7 @@ const Navbar = () => {
                     ? 'text-gray-700 hover:bg-gray-100'
                     : 'text-white hover:bg-white/10'
                 }`}
+                aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
                   <HiOutlineX className="w-6 h-6" />
@@ -271,7 +291,7 @@ const Navbar = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100"
+              className="lg:hidden fixed top-18 left-0 right-0 bottom-0 bg-white shadow-xl overflow-y-auto z-50"
             >
               <div className="container mx-auto px-4 py-4">
                 {/* Mobile Phone Number */}
@@ -280,7 +300,8 @@ const Navbar = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="flex items-center px-4 py-3 mb-2 text-[#16a34a] bg-[#16a34a]/5 rounded-lg border border-[#16a34a]/20"
+                  className="flex items-center justify-center px-4 py-3 mb-4 text-[#16a34a] bg-[#16a34a]/5 rounded-lg border border-[#16a34a]/20"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <HiOutlineDeviceMobile className="w-5 h-5 mr-3" />
                   <span className="font-medium">{phoneNumber}</span>
@@ -295,31 +316,54 @@ const Navbar = () => {
                     className="mb-2"
                   >
                     {item.dropdown ? (
-                      <>
-                        <div className="flex items-center justify-between px-4 py-3 text-gray-700 font-medium">
+                      <div className="border-b border-gray-100">
+                        <button
+                          onClick={() => toggleMobileDropdown(index)}
+                          className="w-full flex items-center justify-between px-4 py-4 text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200"
+                        >
                           <div className="flex items-center">
                             <item.icon className="w-5 h-5 mr-3 text-[#16a34a]" />
                             <span>{item.name}</span>
                           </div>
-                          <HiOutlineChevronDown className="w-4 h-4 text-gray-400" />
-                        </div>
-                        <div className="ml-12 space-y-2">
-                          {item.dropdown.map((dropdownItem) => (
-                            <a
-                              key={dropdownItem.name}
-                              href={dropdownItem.href}
-                              className="block px-4 py-2 text-sm text-gray-600 hover:text-[#16a34a] transition-colors duration-200"
-                              onClick={() => setIsMobileMenuOpen(false)}
+                          <HiOutlineChevronDown 
+                            className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                              openMobileDropdown === index ? 'rotate-180' : ''
+                            }`} 
+                          />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {openMobileDropdown === index && (
+                            <motion.div
+                              variants={dropdownVariants}
+                              initial="hidden"
+                              animate="visible"
+                              exit="hidden"
+                              className="overflow-hidden"
                             >
-                              {dropdownItem.name}
-                            </a>
-                          ))}
-                        </div>
-                      </>
+                              <div className="pl-12 pr-4 pb-3 space-y-2">
+                                {item.dropdown.map((dropdownItem) => (
+                                  <a
+                                    key={dropdownItem.name}
+                                    href={dropdownItem.href}
+                                    className="block py-3 text-sm text-gray-600 hover:text-[#16a34a] border-b border-gray-50 last:border-0"
+                                    onClick={() => {
+                                      setIsMobileMenuOpen(false);
+                                      setOpenMobileDropdown(null);
+                                    }}
+                                  >
+                                    {dropdownItem.name}
+                                  </a>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     ) : (
                       <a
                         href={item.href}
-                        className="flex items-center px-4 py-3 text-gray-700 hover:text-[#16a34a] hover:bg-gray-50 rounded-lg transition-colors duration-200"
+                        className="flex items-center px-4 py-4 text-gray-700 hover:text-[#16a34a] hover:bg-gray-50 rounded-lg transition-colors duration-200 border-b border-gray-100"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <item.icon className="w-5 h-5 mr-3 text-[#16a34a]" />
@@ -334,11 +378,15 @@ const Navbar = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-4 px-4"
+                  className="mt-6 px-4"
                 >
-                  <button className="w-full bg-[#16a34a] text-white py-3 rounded-lg font-medium hover:bg-[#138f3f] transition-colors duration-200">
+                  <a
+                    href="/distributors"
+                    className="block w-full bg-[#16a34a] text-white py-4 rounded-lg font-medium hover:bg-[#138f3f] transition-colors duration-200 text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     Locate a Distributor
-                  </button>
+                  </a>
                 </motion.div>
               </div>
             </motion.div>
@@ -347,7 +395,7 @@ const Navbar = () => {
       </nav>
 
       {/* Spacer for fixed navbar */}
-      <div className="h-20" />
+      <div className={`h-18 ${isScrolled ? 'h-18' : 'h-22'}`} />
     </>
   );
 };
