@@ -1,41 +1,41 @@
 // productsData.js
 // Import all product images
-import inverter15kva from "./assets/products/hybrid-inverters/inverter-15kva.jpg";
-import inverter10kva from "./assets/products/hybrid-inverters/inverter-10kva.jpg";
-import inverter8kw from "./assets/products/hybrid-inverters/inverter-8kw.jpg";
-import inverter6kw from "./assets/products/hybrid-inverters/inverter-6kw.jpg";
-import inverter4kva from "./assets/products/hybrid-inverters/inverter-4kva.jpg";
+import inverter15kva from "../assets/products/inverter-15kva.jpg";
+import inverter10kva from "../assets/products/inverter-10kva.jpg";
+import inverter8kw from "../assets/products/inverter-8kva.jpg";
+import inverter6kw from "../assets/products/inverter-6kva.jpg";
+import inverter4kva from "../assets/products/inverter-4kva.jpg";
 
-import transformer10kva from "./assets/products/transformer-inverters/transformer-10kva.jpg";
-import transformer7kva from "./assets/products/transformer-inverters/transformer-7kva.jpg";
-import transformer5kva from "./assets/products/transformer-inverters/transformer-5kva.jpg";
-import transformer3kva from "./assets/products/transformer-inverters/transformer-3kva.jpg";
+import transformer10kva from "../assets/products/transformer-10kva.jpg";
+import transformer7kva from "../assets/products/transformer-7kva.jpg";
+import transformer5kva from "../assets/products/transformer-5kva.jpg";
+import transformer3kva from "../assets/products/transformer-3kva.jpg";
 
-import controller120a from "./assets/products/charge-controllers/controller-120a.jpg";
-import controller100a from "./assets/products/charge-controllers/controller-100a.jpg";
-import controller80a from "./assets/products/charge-controllers/controller-80a.jpg";
-import controller60a from "./assets/products/charge-controllers/controller-60a.jpg";
-import controller40a from "./assets/products/charge-controllers/controller-40a.jpg";
+import controller120a from "../assets/products/controller-120a.jpg";
+import controller100a from "../assets/products/controller-100a.jpg";
+import controller80a from "../assets/products/controller-80a.jpg";
+import controller60a from "../assets/products/controller-60a.jpg";
+import controller40a from "../assets/products/controller-40a.jpg";
 
-import panel620w from "./assets/products/solar-panels/panel-620w.jpg";
-import panel560w from "./assets/products/solar-panels/panel-560w.jpg";
-import panel400w from "./assets/products/solar-panels/panel-400w.jpg";
-import panel350w from "./assets/products/solar-panels/panel-350w.jpg";
+import panel620w from "../assets/products/panel-620w.jpg";
+import panel560w from "../assets/products/panel-560w.jpg";
+import panel400w from "../assets/products/panel-400w.jpg";
+import panel350w from "../assets/products/panel-350w.jpg";
 
-import battery32kwh from "./assets/products/lithium-batteries/battery-32kwh.jpg";
-import battery20kwh from "./assets/products/lithium-batteries/battery-20kwh.jpg";
-import battery17kwh from "./assets/products/lithium-batteries/battery-17kwh.jpg";
-import battery7kwh from "./assets/products/lithium-batteries/battery-7kwh.jpg";
+import battery32kwh from "../assets/products/battery-32kwh.jpg";
+import battery20kwh from "../assets/products/battery-20kwh.jpg";
+import battery17kwh from "../assets/products/battery-17kwh.jpg";
+import battery7kwh from "../assets/products/battery-7kwh.jpg";
 
-import battery200ah from "./assets/products/deep-cycle-batteries/battery-200ah.jpg";
-import battery220ah from "./assets/products/deep-cycle-batteries/battery-220ah.jpg";
+import battery200ah from "../assets/products/battery-200ah.jpg";
+import battery220ah from "../assets/products/battery-220ah.jpg";
 
-import station3kwh from "./assets/products/power-stations/station-3kwh.jpg";
-import station6kwh from "./assets/products/power-stations/station-6kwh.jpg";
+import station3kwh from "../assets/products/station-3kwh.jpg";
+import station6kwh from "../assets/products/station-6kwh.jpg";
 
-import ac1hp from "./assets/products/inverter-ac/ac-1hp.jpg";
-import ac1_5hp from "./assets/products/inverter-ac/ac-1-5hp.jpg";
-import ac2hp from "./assets/products/inverter-ac/ac-2hp.jpg";
+import ac1hp from "../assets/products/ac-1hp.jpg";
+import ac1_5hp from "../assets/products/ac-1-5hp.jpg";
+import ac2hp from "../assets/products/ac-2hp.jpg";
 
 export const productList = [
   // Hybrid Inverters
@@ -697,22 +697,22 @@ export const productList = [
   },
 ];
 
-export const categories = ["All", ...new Set(products.map((p) => p.category))];
+// export const categories = ["All", ...new Set(products.map((p) => p.category))];
 
-// Helper function to get products by category
-export const getProductsByCategory = (category) => {
-  return category === "All" ? products : products.filter(p => p.category === category);
-};
+// // Helper function to get products by category
+// export const getProductsByCategory = (category) => {
+//   return category === "All" ? products : products.filter(p => p.category === category);
+// };
 
-// Helper function to search products
-export const searchProducts = (query) => {
-  return products.filter(p => 
-    p.name.toLowerCase().includes(query.toLowerCase()) ||
-    p.description.toLowerCase().includes(query.toLowerCase())
-  );
-};
+// // Helper function to search products
+// export const searchProducts = (query) => {
+//   return products.filter(p => 
+//     p.name.toLowerCase().includes(query.toLowerCase()) ||
+//     p.description.toLowerCase().includes(query.toLowerCase())
+//   );
+// };
 
-// Helper function to get product by ID
-export const getProductById = (id) => {
-  return products.find(p => p.id === id);
-};
+// // Helper function to get product by ID
+// export const getProductById = (id) => {
+//   return products.find(p => p.id === id);
+// };

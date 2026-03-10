@@ -111,7 +111,7 @@ const HeroSection = () => {
               >
                 <img src={blogo} className="w-12"/>
                 <h2 className="text-2xl text-[#16a34a] font-bold tracking-wide uppercase">
-                  Bauman <span className="text-white">Energy</span>
+                  Baumann <span className="text-white">Energy</span>
                 </h2>
               </motion.div>
 
@@ -140,17 +140,17 @@ const HeroSection = () => {
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
                 <a
-                  href="/quote"
+                  href="/products"
                   className="bg-[#16a34a] hover:bg-green-700 transition px-8 py-4 rounded-lg font-semibold text-white shadow-lg"
                 >
-                  Get Free Quote
+                  See Our Products
                 </a>
 
                 <a
-                  href="/products"
+                  href="/contact"
                   className="border-2 border-white hover:bg-white hover:text-[#16a34a] transition px-8 py-4 rounded-lg font-semibold"
                 >
-                  See Our Products
+                  Contact Us
                 </a>
               </motion.div>
             </motion.div>

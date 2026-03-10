@@ -1,8 +1,13 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import servicesimg from '../assets/services.jpg';
+import servicesMobile from '../assets/services_m.jpg';
 import Footer from '../components/Footer';
 import ctaimg from "../assets/cta.jpg"
+import trainingimg from "../assets/training1.jpg"
+import repairimg from "../assets/repair.jpg"
+import productimg from "../assets/products_g.jpg"
+import instalationimg from "../assets/instalation.jpg"
 
 
 import { 
@@ -38,7 +43,7 @@ const Services = () => {
       id: 1,
       title: "High-End Product Sales",
       description: "Premium hybrid inverters and lithium battery systems engineered for durability and long-term performance. Our curated selection of German-engineered products represents the pinnacle of solar technology, ensuring maximum efficiency and reliability for your energy independence.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: productimg,
       imageAlt: "Premium solar battery system",
       features: [
         { icon: <Award className="w-5 h-5" />, text: "10-Year Warranty" },
@@ -55,7 +60,7 @@ const Services = () => {
       id: 2,
       title: "Elite Installations",
       description: "Custom solar system installations executed by certified engineers with precision and meticulous attention to detail. From residential rooftops to commercial complexes, our team ensures seamless integration with your existing infrastructure while maximizing energy capture and aesthetic appeal.",
-      image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: instalationimg,
       imageAlt: "Professional solar panel installation",
       features: [
         { icon: <Users className="w-5 h-5" />, text: "Certified Team" },
@@ -72,7 +77,7 @@ const Services = () => {
       id: 3,
       title: "Maintenance & Repairs",
       description: "Advanced diagnostics, servicing, and optimization to ensure uninterrupted power delivery. Our proactive maintenance approach identifies potential issues before they become problems, while our rapid response team ensures minimal downtime with same-day service for critical repairs.",
-      image: "https://images.unsplash.com/photo-1581092335871-4c7c6d10f1f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: repairimg,
       imageAlt: "Technician servicing solar equipment",
       features: [
         { icon: <HeadphonesIcon className="w-5 h-5" />, text: "24/7 Support" },
@@ -89,7 +94,7 @@ const Services = () => {
       id: 4,
       title: "Professional Training",
       description: "Industry-grade solar training programs designed for technicians and energy entrepreneurs. Our comprehensive curriculum combines theoretical knowledge with hands-on experience, preparing you for certification and immediate employment in the rapidly growing solar industry.",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: trainingimg,
       imageAlt: "Solar training session",
       features: [
         { icon: <Briefcase className="w-5 h-5" />, text: "Hands-on Training" },
@@ -119,11 +124,25 @@ const Services = () => {
       <section className="relative min-h-200 flex items-center">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          {/* <img
             src={servicesimg}
             alt="Solar panels at sunset"
             className="w-full h-full object-cover"
-          />
+          /> */}
+
+           <img
+            src={servicesimg}
+            alt="Solar panels at sunset"
+            className="hidden md:block w-full h-full object-cover"
+            />
+
+            {/* Mobile Image */}
+            <img
+                src={servicesMobile}
+            alt="Solar panels mobile"
+            className="block md:hidden w-full h-full object-cover"
+            />
+
           <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-transparent"></div>
         </div>
 
@@ -179,7 +198,7 @@ const Services = () => {
 
       {/* Services Sections - Alternating Full Width */}
       {services.map((service, index) => (
-        <section key={service.id} className="relative bg-white">
+        <section key={service.id} className={'relative ' + (index % 2 === 0 ? ' bg-white' : 'bg-black/5')}>
           {/* Decorative Background */}
           <div className="absolute inset-0 overflow-hidden">
             <div className={`absolute top-0 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-96 h-96 bg-[#16a34a] opacity-5 rounded-full blur-3xl`}></div>
