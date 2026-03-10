@@ -1,27 +1,30 @@
 import { motion } from "framer-motion";
 import { FiSearch, FiPhone, FiMapPin } from "react-icons/fi";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const distributors = [
   {
-    name: "SolarTech Nigeria Ltd",
-    city: "Port Harcourt",
-    phone: "+234 XXX XXX XXXX",
+    name: "CJ Solar Tech Nig LTD",
+    city: "SHOP 16 Bolanta Plaza. Beside Mobil Filling Station Egbu Road Owerri",
+    phone: "+234 803 071 6445",
   },
   {
-    name: "GreenVolt Energy",
-    city: "Lagos",
-    phone: "+234 XXX XXX XXXX",
+    name: "Alpha Rapha Solar",
+    city: "No 4 Yar'adua Drive,  Owerri ",
+    phone: "+234 806 809 9338, +234 816 956 2703",
   },
-  {
-    name: "SunGrid Power",
-    city: "Abuja",
-    phone: "+234 XXX XXX XXXX",
-  },
+//   {
+//     name: "SunGrid Power",
+//     city: "Abuja",
+//     phone: "+234 XXX XXX XXXX",
+//   },
 ];
 
 export default function Distributor() {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <><Navbar/> 
+    <div className="bg-gray-50 min-h-screen absolute inset-0">
 
       {/* Hero */}
       <section className="bg-linear-to-r from-green-700 to-blue-800 text-white py-24 text-center">
@@ -97,7 +100,8 @@ export default function Distributor() {
         </div>
 
       </section>
+      <div><Footer/></div>
 
-    </div>
+    </div></>
   );
 }

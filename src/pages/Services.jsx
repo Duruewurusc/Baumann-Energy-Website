@@ -8,6 +8,7 @@ import trainingimg from "../assets/training1.jpg"
 import repairimg from "../assets/repair.jpg"
 import productimg from "../assets/products_g.jpg"
 import instalationimg from "../assets/instalation.jpg"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 
 import { 
@@ -188,12 +189,21 @@ const Services = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 hidden md:block">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+       <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-center"
+        >
+          <p className="text-sm mb-2">Scroll to explore</p>
+          <div className="w-6 h-10 border-2 border-white rounded-full mx-auto flex justify-center">
+            <motion.div 
+              animate={{ y: [0, 12, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+              className="w-1 h-2 bg-white rounded-full mt-2"
+            />
           </div>
-        </div> */}
+        </motion.div>
       </section>
 
       {/* Services Sections - Alternating Full Width */}
