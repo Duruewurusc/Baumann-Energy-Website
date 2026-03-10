@@ -22,13 +22,13 @@ const CTASection = () => {
         </p>
         <div className="flex justify-center gap-6 flex-wrap">
           <a
-            href="#get-quote"
+            href="contact"
             className="bg-linear-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-full font-semibold tracking-wide shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            Get Free Quote
+            Contact Us
           </a>
           <a
-            href="#products"
+            href="products"
             className="px-8 py-4 border border-white hover:bg-white hover:text-black transition font-semibold rounded-full"
           >
             See Our Products

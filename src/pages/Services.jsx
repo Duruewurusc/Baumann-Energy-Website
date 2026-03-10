@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import servicesimg from '../assets/services.jpg';
 import Footer from '../components/Footer';
+import ctaimg from "../assets/cta.jpg"
+
 
 import { 
   Shield, 
@@ -25,6 +27,10 @@ import {
   Leaf,
 
 } from 'lucide-react';
+
+
+// Sample stock image URL for green-blue energy vibe
+const backgroundImage = ctaimg;
 
 const Services = () => {
   const services = [
@@ -124,16 +130,11 @@ const Services = () => {
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-3xl">
-            {/* Badge */}
-            {/* <div className="inline-flex items-center bg-[#16a34a]/20 backdrop-blur-sm text-[#16a34a] px-4 py-2 rounded-full mb-6">
-              <Sun className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Premium Energy Solutions</span>
-            </div> */}
-
+           
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Powering Tomorrow with{' '}
-              <span className="text-[#16a34a]">German Precision</span>
+              Discover{' '}
+              <span className="text-[#16a34a]">Our Solutions</span>
             </h1>
 
             {/* Description */}
@@ -143,7 +144,7 @@ const Services = () => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
+            {/* <div className="flex flex-wrap gap-4">
               <button onClick={() => window.location.href = '/products'} className="bg-[#16a34a] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#138a3f] transition-colors inline-flex items-center group">
                 View Products
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -151,7 +152,7 @@ const Services = () => {
               <button onClick={()=> window.location.href ='/contact'} className="bg-white/10 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors border border-white/30">
                 Contact Us
               </button>
-            </div>
+            </div> */}
 
             {/* Stats */}
             {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
@@ -329,7 +330,9 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-[#16a34a] py-20 overflow-hidden">
+      <section  className="w-full bg-cover bg-center py-20 relative"
+      style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className="absolute inset-0 bg-black/50"></div>
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>

@@ -109,9 +109,9 @@ const HeroSection = () => {
                 transition={{ delay: 0.2, duration: 0.5 }}
                 className="flex items-center justify-center gap-2 mb-4"
               >
-                <img src={blogo} className="w-8"/>
-                <h2 className="text-xl font-semibold tracking-wide uppercase">
-                  Bauman Energy
+                <img src={blogo} className="w-12"/>
+                <h2 className="text-2xl text-[#16a34a] font-bold tracking-wide uppercase">
+                  Bauman <span className="text-white">Energy</span>
                 </h2>
               </motion.div>
 

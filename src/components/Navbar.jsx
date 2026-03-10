@@ -32,12 +32,12 @@ const Navbar = () => {
       href: 'products',
       icon: HiOutlineSun,
       dropdown: [
-        { name: 'Solar Panels', href: 'products/solar-panels' },
-        { name: 'Inverters', href: 'products/inverters' },
-        { name: 'Batteries', href: 'products/batteries' },
-        { name: 'Charge Controllers', href: 'products/charge-controllers' },
-        { name: 'Solar Generators', href: 'products/solar-generators' },
-        { name: 'Air Conditioners', href: 'products/air-conditioners' },
+        { name: 'Solar Panels', href: "/products?category=Solar Panel" },
+        { name: 'Inverters', href: "/products?category=Hybrid Inverter" },
+        { name: 'Batteries', href: "/products?category=Lithium Battery" },
+        { name: 'Charge Controllers', href: "/products?category=Charge Controller" },
+        { name: 'Solar Generators', href: "/products?category=Power Station" },
+        { name: 'Air Conditioners', href: "/products?category=Inverter AC" },
       ]
     },
     { name: 'Services', href: 'services', icon: HiOutlineDeviceMobile },

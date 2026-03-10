@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import productsimg from "../assets/product.jpg"; 
 import inverter15kva from "../assets/products/inverter-15kva.jpg";
+import Footer from "../components/Footer";
+import { useSearchParams } from "react-router-dom";
+
 
 import { 
   ShieldCheck, Truck, Leaf, Award, 
@@ -9,6 +12,8 @@ import {
   Zap, Cpu, Home, Grid, RefreshCw,
   Eye, ChevronLeft, ChevronRight
 } from "lucide-react";
+
+
 
 const products = [
   // Hybrid Inverters
@@ -70,10 +75,13 @@ const categoryIcons = {
   "Inverter AC": Wind,
 };
 
+
+
 // Get unique categories
 const categories = ["All", ...new Set(products.map((p) => p.category))];
 
 const Products = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -107,6 +115,14 @@ const Products = () => {
   React.useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory, searchQuery]);
+
+  React.useEffect(() => {
+  const categoryFromUrl = searchParams.get("category");
+
+  if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+    setSelectedCategory(categoryFromUrl);
+  }
+}, [searchParams]);
 
   // Group filtered products by category for display
   const filteredProductsByCategory = filteredProducts.reduce((acc, product) => {
@@ -236,8 +252,10 @@ const Products = () => {
                         key={category}
                         onClick={() => {
                           setSelectedCategory(category);
+                          setSearchParams({ category });
                           setIsMobileFilterOpen(false);
-                        }}
+                          }}
+                       
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                           isSelected
                             ? "bg-[#16a34a] text-white shadow-md"
@@ -495,8 +513,9 @@ const Products = () => {
         <button className="bg-white text-[#16a34a] hover:bg-gray-100 px-10 py-4 rounded-full font-semibold text-lg transition duration-300 shadow-2xl transform hover:scale-105">
           Speak to an Expert
         </button>
-      </section>
-    </div></>
+      </section><Footer/>
+    </div>
+    </>
   );
 };
 
