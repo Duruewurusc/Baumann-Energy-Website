@@ -1,13 +1,13 @@
-import { Helmet } from "react-helmet";
+import { Helmet,  HelmetProvider } from "react-helmet-async";
 
 export default function SEO({ seo }) {
   if (!seo) return null;
 
   return (
-    <Helmet>
+    <HelmetProvider>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="keywords" content={seo.keywords} />
-    </Helmet>
+    </HelmetProvider>
   );
 }
