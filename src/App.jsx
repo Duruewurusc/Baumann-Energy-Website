@@ -8,7 +8,9 @@ import Products from './pages/Products';
 import Services from './pages/Services';
 import Contact from "./pages/Contact";
 import Distributor from "./pages/Distributor";
-
+import CaseStudies from "./pages/CaseStudies";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/services" element={<Services />} /> 
+        <Route path="/case-studies" element={<CaseStudies />} /> 
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         {/* Catch-all route MUST be last */}
         <Route path="*" element={<NotFound />} />
        

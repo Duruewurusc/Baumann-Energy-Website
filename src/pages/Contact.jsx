@@ -64,7 +64,7 @@ export default function Contact() {
     {
       icon: <FiMapPin className="text-2xl" />,
       title: "Head Office",
-      content: "Baumann Energy Hub, Plot 2033 Festac Link Road Amuwo-Odofin Lagos, Nigeria",
+      content: "Baumann Energy Hub, Plot 2032 Festac Link Road Amuwo-Odofin Lagos, Nigeria",
       subContent: "Nigeria",
       color: "text-[#16a34a]"
     }
@@ -73,7 +73,7 @@ export default function Contact() {
   const distributors = [
     {
       city: "Lagos",
-      address: "Baumann Energy Hub/ Service Center. Plot 2033 Festac Link Road, Amuwo Odofin Lagos",
+      address: "Baumann Energy Hub/ Service Center. Plot 2032 Festac Link Road, Amuwo Odofin Lagos",
       phone: "+2348139285321"
     },
     {

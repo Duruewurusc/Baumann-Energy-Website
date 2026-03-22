@@ -72,7 +72,7 @@ const Footer = () => {
           <h4 className="font-semibold text-gray-900 mb-4">Contact Us</h4>
           <p className="text-gray-600 mb-2">baumannenergysolar@gmail.com</p>
           <p className="text-gray-600 mb-2">+2348139285321</p>
-          <p className="text-gray-600">Baumann energy  hub/service center, Plot 2033 Festac Link Road Amuwo-Odofin Lagos, Nigeria</p>
+          <p className="text-gray-600">Baumann energy  hub/service center, Plot 2032 Festac Link Road Amuwo-Odofin Lagos, Nigeria</p>
         </div>
       </div>
 

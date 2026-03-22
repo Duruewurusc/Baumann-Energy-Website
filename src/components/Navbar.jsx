@@ -43,14 +43,14 @@ const Navbar = () => {
     { name: 'Services', href: '/services', icon: HiOutlineDeviceMobile },
     { 
       name: 'Project Case Studies', 
-      href: '/projects',
+      href: '/case-studies',
       icon: HiOutlineFolderOpen,
-      dropdown: [
-        { name: 'Residential', href: '#residential' },
-        { name: 'Commercial', href: '#commercial' },
-        { name: 'Industrial', href: '#industrial' },
-        { name: 'Utility Scale', href: '#utility' },
-      ]
+      // dropdown: [
+      //   { name: 'Residential', href: '#residential' },
+      //   { name: 'Commercial', href: '#commercial' },
+      //   { name: 'Industrial', href: '#industrial' },
+      //   { name: 'Utility Scale', href: '#utility' },
+      // ]
     },
     { name: 'Contact Us', href: '/contact', icon: HiOutlinePhone },
     { name: 'Blog', href: '/blog', icon: HiOutlineNewspaper },
