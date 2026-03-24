@@ -32,6 +32,7 @@ const Navbar = () => {
       href: '/products',
       icon: HiOutlineSun,
       dropdown: [
+        { name: 'All Products', href: "/products" },
         { name: 'Solar Panels', href: "/products?category=Solar Panel" },
         { name: 'Inverters', href: "/products?category=Hybrid Inverter" },
         { name: 'Batteries', href: "/products?category=Lithium Battery" },
