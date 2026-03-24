@@ -37,4 +37,4 @@ jobs:
             npm install
             npm install react-intersection-observer
             npm run build
-            systemctl reload nginx
+            # systemctl reload nginx
