@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaArrowLeft, FaStar, FaBolt, FaShieldAlt, FaRulerCombined, FaWeightHanging, FaCalendarAlt, FaMicrochip, FaPlug, FaChartLine } from 'react-icons/fa';
 import { productList } from './ProductsData'; // Adjust path as needed
@@ -7,6 +8,15 @@ const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const product = productList.find(p => p.id === parseInt(id));
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant' // Use 'smooth' for animated scrolling
+    });
+  }, [id]); // Re-run when product ID changes
+
 
   if (!product) {
     return (
