@@ -87,6 +87,14 @@ const Products = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
   const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant' // Use 'smooth' for animated scrolling
+    });
+  }, [selectedCategory, searchQuery]); // Re-run when product ID changes
+
 
   // Reset to first page when filters change
   useEffect(() => {
