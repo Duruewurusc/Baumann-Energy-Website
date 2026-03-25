@@ -11,6 +11,7 @@ import Distributor from "./pages/Distributor";
 import CaseStudies from "./pages/CaseStudies";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
+import ProductDetails from "./pages/ProductDetails";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/distributors" element={<Distributor />} />
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/services" element={<Services />} /> 
         <Route path="/case-studies" element={<CaseStudies />} /> 
         <Route path="/blog" element={<BlogList />} />

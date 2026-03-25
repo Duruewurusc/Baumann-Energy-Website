@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Navbar from "../components/Navbar";
 import productsimg from "../assets/product.jpg"; 
 import Footer from "../components/Footer";
 import { useSearchParams } from "react-router-dom";
 import { productList } from "./ProductsData";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {useNavigate} from "react-router-dom";
 
 import { 
   ShieldCheck, Truck, Leaf, Award, 
@@ -12,6 +13,8 @@ import {
   Zap, Cpu, Home, Grid, RefreshCw,
   Eye, ChevronLeft, ChevronRight, ArrowDown
 } from "lucide-react";
+
+
 
 // Animation variants
 const fadeInUp = {
@@ -50,6 +53,7 @@ const categoryIcons = {
 const categories = ["All", ...new Set(productList.map((p) => p.category))];
 
 const Products = () => {
+  const navigate  = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -497,7 +501,7 @@ const Products = () => {
                           <motion.button 
                             className="mt-auto w-full bg-transparent text-[#16a34a] py-3.5 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 group/btn border border-[#16a34a]/20 hover:bg-[#16a34a] hover:text-white"
                             whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            whileTap={{ scale: 0.98 }} onClick={()=> navigate(`/products/${product.id}`)}
                           >
                             View Details
                             <Eye className="w-4 h-4" />
