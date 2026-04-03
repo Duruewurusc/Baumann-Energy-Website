@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import productsimg from "../assets/product.jpg"; 
 import Footer from "../components/Footer";
 import { useSearchParams } from "react-router-dom";
-import { productList } from "./ProductsData";
+import { productList } from "../components/ProductsData";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {useNavigate} from "react-router-dom";
 

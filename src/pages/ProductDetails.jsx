@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaArrowLeft, FaStar, FaBolt, FaShieldAlt, FaRulerCombined, FaWeightHanging, FaCalendarAlt, FaMicrochip, FaPlug, FaChartLine } from 'react-icons/fa';
-import { productList } from './ProductsData'; // Adjust path as needed
+import { productList } from '../components/ProductsData'; // Adjust path as needed
 
 const ProductDetails = () => {
   const { id } = useParams();

@@ -12,16 +12,30 @@ import CaseStudies from "./pages/CaseStudies";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ProductDetails from "./pages/ProductDetails";
-
+import ReactPixel from "react-facebook-pixel";
+import { useEffect } from "react";
+import PixelTracker from './components/PixelTrack';
 
 function App() {
   const [count, setCount] = useState(0)
 
+  useEffect(() => {
+    const options = {
+      autoConfig: true,
+      debug: true, // set false after testing
+    };
+
+    ReactPixel.init("1266067401716582", {}, options);
+    ReactPixel.pageView();
+  }, []);
+
   return (
     <>
       <BrowserRouter>
+      <PixelTracker />
       
       <Routes>
+        
         <Route path="/contact" element={<Contact />} />
         <Route path="/distributors" element={<Distributor />} />
         <Route path="/" element={<Home />} />
