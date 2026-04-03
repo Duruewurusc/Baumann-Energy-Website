@@ -6,21 +6,23 @@ import { HiOutlineSun, HiOutlineChevronLeft, HiOutlineChevronRight } from "react
 import hero1 from "../assets/hero.jpg";
 import hero2 from "../assets/hero-1.jpg";
 import hero3 from "../assets/hero-2.jpg";
+import newhero from "../assets/new hero.jpg";
+import newhero2 from "../assets/new hero2.jpg";
 import blogo from "../assets/b.png"
 
 const slides = [
   {
-    image: hero1,
+    image: newhero,
     title: "Power Your Home With Clean Solar Energy",
     subtitle: "Reliable solar solutions built for Nigerian homes & businesses.",
   },
   {
-    image: hero2,
+    image: hero1,
     title: "Affordable & Efficient Solar Systems",
     subtitle: "Cut electricity bills and enjoy 24/7 uninterrupted power.",
   },
   {
-    image: hero3,
+    image: newhero2,
     title: "Trusted Solar Experts in Nigeria",
     subtitle: "Installation, maintenance and premium solar products.",
   },
