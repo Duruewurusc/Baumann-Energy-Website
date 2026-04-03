@@ -29,22 +29,66 @@ export default function Contact() {
     });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Add your form submission logic here
+  //   setFormStatus({
+  //     submitted: true,
+  //     success: true,
+  //     message: "Thank you for reaching out! We'll get back to you within 24 hours."
+  //   });
+  //   // Reset form after submission
+  //   setFormData({
+  //     fullName: "",
+  //     email: "",
+  //     phone: "",
+  //     message: ""
+  //   });
+  // };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: "Thank you for reaching out! We'll get back to you within 24 hours."
-    });
-    // Reset form after submission
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
-  };
+  e.preventDefault();
+
+  const whatsappNumber = "2348139285321";
+
+  const message = `
+  Hello Baumann Energy,
+
+  A new contact form was submitted from the website.
+
+  Full Name: ${formData.fullName}
+  Email: ${formData.email}
+  Phone: ${formData.phone}
+
+  Message:
+  ${formData.message}
+  `;
+
+  const whatsappUrl =
+    "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
+  // 🔥 Fire Facebook Pixel Lead event (important)
+  if (window.fbq) {
+    window.fbq("track", "Lead");
+  }
+
+  // open whatsapp
+  window.open(whatsappUrl, "_blank");
+
+  // optional success state on page
+  setFormStatus({
+    submitted: true,
+    success: true,
+    message: "Redirecting you to WhatsApp..."
+  });
+
+  // reset form
+  setFormData({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+};
 
   const contactInfo = [
     {
@@ -191,7 +235,7 @@ export default function Contact() {
                     value={formData.fullName}
                     onChange={handleChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Emeka Adamu Segun"
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#16a34a] focus:border-transparent transition duration-200 outline-none"
                   />
                 </div>
@@ -207,7 +251,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="john@example.com"
+                    placeholder="adamu@example.com"
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#16a34a] focus:border-transparent transition duration-200 outline-none"
                   />
                 </div>
@@ -251,7 +295,7 @@ export default function Contact() {
                 className="w-full bg-linear-to-r from-[#16a34a] to-blue-600 hover:from-[#15803d] hover:to-blue-700 text-white px-6 py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <FiSend className="text-lg" />
-                Send Message
+                Send Message on WhatsApp
               </motion.button>
             </form>
           </motion.div>
