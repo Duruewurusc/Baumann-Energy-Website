@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import ReactPixel from "react-facebook-pixel";
 
 const WhatsAppButton = () => {
   const phoneNumber = "2348139285321"; // Replace with your WhatsApp number (include country code, no +)
@@ -9,9 +10,23 @@ const WhatsAppButton = () => {
     message
   )}`;
 
+  const handleWhatsAppClick = (e) => {
+  e.preventDefault(); // stop instant navigation
+  console.log("WhatsApp button clicked, tracking event...");
+
+  ReactPixel.track("WhatsApp Inquiry", {
+    content_name: "WhatsApp inquiry Button",
+  });
+
+  // small delay to ensure Meta receives the event
+  setTimeout(() => {
+    window.open(whatsappUrl, "_blank");
+  }, 300);
+};
+
   return (
     <div className="fixed bottom-7 right-7 z-50 group">
-  <a
+  <a onClick={handleWhatsAppClick}
     href={whatsappUrl}
     target="_blank"
     rel="noopener noreferrer"

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaWhatsapp, FaArrowLeft, FaStar, FaBolt, FaShieldAlt, FaRulerCombined, FaWeightHanging, FaCalendarAlt, FaMicrochip, FaPlug, FaChartLine } from 'react-icons/fa';
 import { productList } from '../components/ProductsData'; // Adjust path as needed
+import ReactPixel from "react-facebook-pixel";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -31,6 +32,21 @@ const ProductDetails = () => {
       </div>
     );
   }
+
+    const handleWhatsAppClick = (e) => {
+    e.preventDefault(); // stop instant navigation
+    console.log("WhatsApp button clicked, tracking event...");
+  
+    ReactPixel.track("WhatsApp Order", {
+      content_name: product.name,
+    });
+  
+    // small delay to ensure Meta receives the event
+    setTimeout(() => {
+      window.open(whatsappUrl, "_blank");
+    }, 300);
+  };
+  
 
   // Format phone number for WhatsApp (remove any non-numeric characters)
   const phoneNumber = '2348139285321'; // Replace with your actual business WhatsApp number
@@ -127,6 +143,7 @@ const ProductDetails = () => {
               {/* Order Button - WhatsApp */}
               <a
                 href={whatsappUrl}
+                onClick={handleWhatsAppClick}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
