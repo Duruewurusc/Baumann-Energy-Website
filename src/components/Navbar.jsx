@@ -23,6 +23,8 @@ const Navbar = () => {
 
   // Company phone number
   const phoneNumber = "+234 817 069 9405";
+  const whatsappNumber = "2348139285321";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hello%20Baumann%20Energy,%20I%20would%20like%20to%20get%20a%20free%20solar%20quote`;
 
   // Navigation items
   const navItems = [
@@ -248,7 +250,7 @@ const Navbar = () => {
 
               {/* CTA Button */}
               <motion.a
-                href="/distributors"
+                href={whatsappUrl}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
@@ -258,7 +260,7 @@ const Navbar = () => {
                     : 'bg-white text-[#16a34a] hover:bg-gray-100'
                 }`}
               >
-                Locate a Distributor
+                Get a free solar quote
               </motion.a>
             </div>
 
@@ -382,11 +384,11 @@ const Navbar = () => {
                   className="mt-6 px-4"
                 >
                   <a
-                    href="/distributors"
+                    href={whatsappUrl}
                     className="block w-full bg-[#16a34a] text-white py-4 rounded-lg font-medium hover:bg-[#138f3f] transition-colors duration-200 text-center"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Locate a Distributor
+                    Get a free solar quote
                   </a>
                 </motion.div>
               </div>
