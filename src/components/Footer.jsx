@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaTiktok } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -17,16 +17,16 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex mt-6 space-x-4">
-            <a href="#" className="text-gray-600 hover:text-[#16a34a] transition">
+            <a href="https://web.facebook.com/profile.php?id=61584894966596" className="text-gray-600 hover:text-[#16a34a] transition">
               <FaFacebookF />
             </a>
-            <a href="#" className="text-gray-600 hover:text-[#16a34a] transition">
-              <FaTwitter />
+            <a href="https://www.tiktok.com/@baumannenergysolar" className="text-gray-600 hover:text-[#16a34a] transition">
+              <FaTiktok />
             </a>
-            <a href="#" className="text-gray-600 hover:text-[#16a34a] transition">
+            {/* <a href="#" className="text-gray-600 hover:text-[#16a34a] transition">
               <FaLinkedinIn />
-            </a>
-            <a href="#" className="text-gray-600 hover:text-[#16a34a] transition">
+            </a> */}
+            <a href="https://www.instagram.com/baumann_energy/" className="text-gray-600 hover:text-[#16a34a] transition">
               <FaInstagram />
             </a>
           </div>
